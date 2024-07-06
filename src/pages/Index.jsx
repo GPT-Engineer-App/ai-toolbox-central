@@ -4,29 +4,51 @@ import { Button } from "@/components/ui/button";
 
 const categories = [
   {
-    title: "AI Tools",
+    title: "CLI Tools",
     items: [
       {
-        name: "GPT-3",
-        description: "A powerful language model developed by OpenAI.",
-        downloadLink: "#",
-        tutorialLink: "#",
-        tags: ["Free", "API"],
+        name: "GPT-3 CLI",
+        releaseDate: "January 2023",
+        description: "A command-line interface for interacting with OpenAI's GPT-3 model.",
+        images: ["/images/gpt3-cli-1.png", "/images/gpt3-cli-2.png"],
+        downloadLink: "https://github.com/openai/gpt-3/releases",
+        cliInstructions: "pip install gpt3-cli",
+        tags: ["Python", "API"],
       },
-      // Add more tools here
+      {
+        name: "AI Image Enhancer CLI",
+        releaseDate: "March 2023",
+        description: "Enhance image quality using AI from the command line.",
+        images: ["/images/ai-image-enhancer-1.png", "/images/ai-image-enhancer-2.png"],
+        downloadLink: "https://github.com/ai-tools/ai-image-enhancer/releases",
+        cliInstructions: "cargo install ai-image-enhancer",
+        tags: ["Rust", "Image Processing"],
+      },
+      // Add more CLI tools here
     ],
   },
   {
-    title: "Utilities",
+    title: "Executable Utilities",
     items: [
       {
-        name: "AI Image Enhancer",
-        description: "Enhance image quality using AI.",
-        downloadLink: "#",
-        tutorialLink: "#",
-        tags: ["Free", "Desktop"],
+        name: "AI Video Processor",
+        releaseDate: "February 2023",
+        description: "A utility for processing videos using AI.",
+        images: ["/images/ai-video-processor-1.png", "/images/ai-video-processor-2.png"],
+        downloadLink: "https://github.com/ai-tools/ai-video-processor/releases",
+        cliInstructions: "go install github.com/ai-tools/ai-video-processor@latest",
+        tags: ["Go", "Video Processing"],
       },
-      // Add more utilities here
+      {
+        name: "AI Data Cleaner",
+        releaseDate: "April 2023",
+        description: "Clean and preprocess data using AI.",
+        images: ["/images/ai-data-cleaner-1.png", "/images/ai-data-cleaner-2.png"],
+        downloadLink: "https://github.com/ai-tools/ai-data-cleaner/releases",
+        cliInstructions: "apt-get install ai-data-cleaner",
+        tags: ["Linux", "Data Processing"],
+      },
+      // Add more executable utilities here
     ],
   },
   // Add more categories here
@@ -74,21 +96,26 @@ const Index = () => {
                     <ul className="space-y-4">
                       {category.items.map((item) => (
                         <li key={item.name} className="border p-4 rounded-lg">
-                          <h3 className="text-xl font-bold">{item.name}</h3>
+                          <h3 className="text-xl font-bold">{item.name} <span className="text-sm text-muted-foreground">({item.releaseDate})</span></h3>
                           <p className="text-muted-foreground">{item.description}</p>
                           <div className="mt-2 flex space-x-4">
                             <Button variant="link" as="a" href={item.downloadLink}>
                               Download
                             </Button>
-                            <Button variant="link" as="a" href={item.tutorialLink}>
-                              Tutorial
-                            </Button>
+                          </div>
+                          <div className="mt-2">
+                            <code className="block bg-muted p-2 rounded">{item.cliInstructions}</code>
                           </div>
                           <div className="mt-2 space-x-2">
                             {item.tags.map((tag) => (
                               <span key={tag} className="inline-block bg-muted px-2 py-1 rounded-full text-xs font-medium">
                                 {tag}
                               </span>
+                            ))}
+                          </div>
+                          <div className="mt-4 grid grid-cols-2 gap-4">
+                            {item.images.map((src, index) => (
+                              <img key={index} src={src} alt={`${item.name} screenshot ${index + 1}`} className="rounded-lg" />
                             ))}
                           </div>
                         </li>
