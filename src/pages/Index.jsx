@@ -4,29 +4,42 @@ import { Button } from "@/components/ui/button";
 
 const categories = [
   {
-    title: "AI Tools",
+    title: "CLI Tools",
     items: [
       {
-        name: "GPT-3",
-        description: "A powerful language model developed by OpenAI.",
-        downloadLink: "#",
-        tutorialLink: "#",
+        name: "GPT-3 CLI",
+        releaseDate: "January 2023",
+        description: "A command-line interface for interacting with OpenAI's GPT-3 model.",
+        images: ["/images/gpt3-cli-1.png", "/images/gpt3-cli-2.png"],
+        downloadLink: "https://github.com/openai/gpt-3/releases",
+        cliInstructions: "pip install gpt3-cli",
         tags: ["Free", "API"],
       },
-      // Add more tools here
+      {
+        name: "AI Image Enhancer CLI",
+        releaseDate: "March 2023",
+        description: "Enhance image quality using AI from the command line.",
+        images: ["/images/ai-image-enhancer-cli-1.png"],
+        downloadLink: "https://github.com/ai-tools/ai-image-enhancer-cli/releases",
+        cliInstructions: "cargo install ai-image-enhancer-cli",
+        tags: ["Free", "Desktop"],
+      },
+      // Add more CLI tools here
     ],
   },
   {
-    title: "Utilities",
+    title: "Executable Utilities",
     items: [
       {
-        name: "AI Image Enhancer",
-        description: "Enhance image quality using AI.",
-        downloadLink: "#",
-        tutorialLink: "#",
+        name: "AI Video Enhancer",
+        releaseDate: "February 2023",
+        description: "A desktop utility to enhance video quality using AI.",
+        images: ["/images/ai-video-enhancer-1.png"],
+        downloadLink: "https://github.com/ai-tools/ai-video-enhancer/releases",
+        cliInstructions: "apt install ai-video-enhancer",
         tags: ["Free", "Desktop"],
       },
-      // Add more utilities here
+      // Add more executable utilities here
     ],
   },
   // Add more categories here
@@ -75,20 +88,27 @@ const Index = () => {
                       {category.items.map((item) => (
                         <li key={item.name} className="border p-4 rounded-lg">
                           <h3 className="text-xl font-bold">{item.name}</h3>
+                          <p className="text-muted-foreground">{item.releaseDate}</p>
                           <p className="text-muted-foreground">{item.description}</p>
                           <div className="mt-2 flex space-x-4">
                             <Button variant="link" as="a" href={item.downloadLink}>
                               Download
                             </Button>
-                            <Button variant="link" as="a" href={item.tutorialLink}>
-                              Tutorial
-                            </Button>
+                          </div>
+                          <div className="mt-2">
+                            <p className="font-semibold">CLI Instructions:</p>
+                            <code className="block bg-muted p-2 rounded">{item.cliInstructions}</code>
                           </div>
                           <div className="mt-2 space-x-2">
                             {item.tags.map((tag) => (
                               <span key={tag} className="inline-block bg-muted px-2 py-1 rounded-full text-xs font-medium">
                                 {tag}
                               </span>
+                            ))}
+                          </div>
+                          <div className="mt-2">
+                            {item.images.map((src, index) => (
+                              <img key={index} src={src} alt={`${item.name} screenshot ${index + 1}`} className="rounded-lg mb-2" />
                             ))}
                           </div>
                         </li>
