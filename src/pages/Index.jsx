@@ -94,9 +94,6 @@ const Index = () => {
                             <Button variant="link" as="a" href={item.downloadLink}>
                               Download
                             </Button>
-                            <Button variant="link" as="a" href={item.tutorialLink}>
-                              Tutorial
-                            </Button>
                           </div>
                           <div className="mt-2">
                             <code className="block bg-muted p-2 rounded">{item.cliInstructions}</code>
